@@ -1,0 +1,14 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Notes App From Udemy",
+  "main": "app.js",
+  "repository": "git@gitlab.com:jchlu-udemy/the-complete-nodejs-developer-course-2.git",
+  "author": "jchlu",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "validator": "^13.0.0"
+  }
+}
