@@ -1,6 +1,6 @@
 {
   "name": "notes-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Notes App From Udemy",
   "main": "app.js",
   "repository": "git@gitlab.com:jchlu-udemy/the-complete-nodejs-developer-course-2.git",

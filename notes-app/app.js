@@ -1,35 +1,50 @@
-const chalk = require('chalk')
-const validator = require('validator')
 const yargs = require('yargs')
-
-const notes = require('./notes')
 
 const log = console.log
 
-/* log(notes.getNotes())
-log(validator.isEmail('johnny+sausages@exito.tech'))
-log(validator.isURL('https://exito.tech'))
-log(chalk.blue.inverse.bold('Success!')) */
-
 yargs.command({
-  command: 'adding',
-  aliases: ['add', 'new'],
-  desc: 'Add a new note',
-  handler: (argv) => {
-    console.table(argv)
+  command: 'add',
+  describe: 'Add a new note',
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: 'Note body',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: ({ title, body }) => {
+    log(`Title: ${title}`)
+    log(`Body: ${body}`)
   }
 })
 
-/* yargs.command({
-  command: 'configure <key> [value]',
-  aliases: ['config', 'cfg'],
-  desc: 'Set a config variable',
-  builder: (yargs) => yargs.default('value', 'true'),
-  handler: (argv) => {
-    console.log(`setting ${argv.key} to ${argv.value}`)
+yargs.command({
+  command: 'read',
+  describe: 'Read the specified note',
+  handler: _ => {
+    log('Reading the specified note')
   }
-}) */
+})
 
-// console.table(process.argv)
-log(yargs.argv)
-// log(notes)
+yargs.command({
+  command: 'remove',
+  describe: 'Remove the specified note',
+  handler: _ => {
+    log('Removing the specified note')
+  }
+})
+
+yargs.command({
+  command: 'list',
+  describe: 'List all notes',
+  handler: _ => {
+    log('Listing all notes')
+  }
+})
+
+yargs.parse()
