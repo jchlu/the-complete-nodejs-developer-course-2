@@ -1,6 +1,7 @@
 const yargs = require('yargs')
-
-const log = console.log
+const { addNote, getNote, loadNotes, removeNote } = require('./utils')
+// const log = console.log
+const table = console.table
 
 yargs.command({
   command: 'add',
@@ -17,25 +18,38 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: ({ title, body }) => {
-    log(`Title: ${title}`)
-    log(`Body: ${body}`)
+  handler: argv => {
+    addNote(argv)
   }
 })
 
 yargs.command({
   command: 'read',
   describe: 'Read the specified note',
-  handler: _ => {
-    log('Reading the specified note')
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: argv => {
+    getNote(argv)
   }
 })
 
 yargs.command({
   command: 'remove',
   describe: 'Remove the specified note',
-  handler: _ => {
-    log('Removing the specified note')
+  builder: {
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: argv => {
+    removeNote(argv)
   }
 })
 
@@ -43,7 +57,8 @@ yargs.command({
   command: 'list',
   describe: 'List all notes',
   handler: _ => {
-    log('Listing all notes')
+    const notes = loadNotes()
+    table(notes)
   }
 })
 
