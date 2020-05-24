@@ -1,0 +1,14 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather App for Udemy",
+  "main": "app.js",
+  "author": "jchlu",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "postman-request": "^2.88.1-postman.22"
+  }
+}
