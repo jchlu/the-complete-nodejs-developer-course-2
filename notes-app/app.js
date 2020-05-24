@@ -1,6 +1,6 @@
 const yargs = require('yargs')
-const { addNote, getNote, loadNotes, removeNote } = require('./utils')
-// const log = console.log
+const { addNote, readNote, removeNote, loadNotes } = require('./utils')
+
 const table = console.table
 
 yargs.command({
@@ -34,7 +34,7 @@ yargs.command({
     }
   },
   handler: argv => {
-    getNote(argv)
+    readNote(argv)
   }
 })
 

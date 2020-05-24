@@ -3,21 +3,21 @@ const chalk = require('chalk')
 const fileName = 'notes.json'
 const log = console.log
 const table = console.table
-const failFlash = chalk.redBright.inverse('FAILURE:')
-const successFlash = chalk.greenBright.inverse('SUCCESS:')
+const failFlash = `${chalk.redBright.inverse('FAILURE:')} `
+const successFlash = `${chalk.greenBright.inverse('SUCCESS: ')} `
 
 const addNote = ({ title, body }) => {
   const notes = loadNotes()
-  const dupes = notes.filter(note => note.title === title)
-  if (dupes.length) {
-    log(failFlash + ` The title ${title} is already taken`)
+  const dupe = notes.find(note => note.title === title)
+  if (dupe) {
+    log(failFlash + `The title "${chalk.blue.bold(title)}" is already taken`)
   } else {
     notes.push({
       title,
       body
     })
     saveNotes(notes)
-    log(successFlash + ` The new ${title} note saved!`)
+    log(successFlash + `The new "${chalk.blue.bold(title)}" note saved!`)
   }
 }
 
@@ -25,10 +25,10 @@ const removeNote = ({ title }) => {
   const notes = loadNotes()
   const remainingNotes = notes.filter(note => note.title !== title)
   if (notes.length === remainingNotes.length) {
-    log(failFlash + ` There wasn't a note titled ${title} found, so it wasn't removed.`)
+    log(failFlash + `There wasn't a note titled "${chalk.blue.bold(title)}" found, so nothing was removed.`)
   } else {
     saveNotes(remainingNotes)
-    log(successFlash + ` The note titled ${title} was removed.`)
+    log(successFlash + `The note titled "${chalk.blue.bold(title)}" was removed.`)
   }
 }
 
@@ -36,10 +36,14 @@ const saveNotes = notes => {
   fs.writeFileSync(fileName, JSON.stringify(notes))
 }
 
-const getNote = ({ title }) => {
+const readNote = ({ title }) => {
   const allNotes = loadNotes()
-  const note = allNotes.filter(note => title === note.title)
-  table(note)
+  const note = allNotes.find(note => title === note.title)
+  if (note) {
+    table(note)
+  } else {
+    log(failFlash + `There was no note titled: "${chalk.blue.bold(title)}" found.`)
+  }
 }
 
 const loadNotes = _ => {
@@ -54,7 +58,7 @@ const loadNotes = _ => {
 
 module.exports = {
   addNote,
-  getNote,
+  readNote,
   loadNotes,
   removeNote
 }
