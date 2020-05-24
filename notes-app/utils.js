@@ -2,7 +2,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const fileName = 'notes.json'
 const failFlash = `${chalk.redBright.inverse('FAILURE:')} `
-const successFlash = `${chalk.greenBright.inverse('SUCCESS: ')} `
+const successFlash = `${chalk.greenBright.inverse('SUCCESS:')} `
 
 const log = msg => {
   if (typeof msg === 'object') {
