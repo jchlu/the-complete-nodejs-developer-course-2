@@ -1,10 +1,16 @@
 const fs = require('fs')
 const chalk = require('chalk')
 const fileName = 'notes.json'
-const log = console.log
-const table = console.table
 const failFlash = `${chalk.redBright.inverse('FAILURE:')} `
 const successFlash = `${chalk.greenBright.inverse('SUCCESS: ')} `
+
+const log = msg => {
+  if (typeof msg === 'object') {
+    console.table(msg)
+  } else {
+    console.log(msg)
+  }
+}
 
 const addNote = ({ title, body }) => {
   const notes = loadNotes()
@@ -40,7 +46,7 @@ const readNote = ({ title }) => {
   const allNotes = loadNotes()
   const note = allNotes.find(note => title === note.title)
   if (note) {
-    table(note)
+    log(note)
   } else {
     log(failFlash + `There was no note titled: "${chalk.blue.bold(title)}" found.`)
   }
@@ -60,5 +66,6 @@ module.exports = {
   addNote,
   readNote,
   loadNotes,
-  removeNote
+  removeNote,
+  log
 }

@@ -1,7 +1,5 @@
 const yargs = require('yargs')
-const { addNote, readNote, removeNote, loadNotes } = require('./utils')
-
-const table = console.table
+const { addNote, readNote, removeNote, loadNotes, log } = require('./utils')
 
 yargs.command({
   command: 'add',
@@ -58,7 +56,7 @@ yargs.command({
   describe: 'List all notes',
   handler: _ => {
     const notes = loadNotes()
-    table(notes)
+    log(notes)
   }
 })
 
