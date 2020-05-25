@@ -19,7 +19,7 @@ app.use(express.static(staticPath))
 app.get('', (req, res) => {
   res.render('index', {
     title: 'Weather App',
-    name: 'Johnny'
+    name: 'Johnny C-L'
   })
 })
 
@@ -33,12 +33,9 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help Page',
-    msgs: [{ p: 'All these worlds are yours, except Europa.' }, { p: 'Attempt no landings there.' }]
+    msgs: [{ p: 'All these worlds are yours, except Europa.' }, { p: 'Attempt no landings there.' }],
+    name: 'Johnny C-L'
   })
-})
-
-app.get('/weather', (req, res) => {
-  res.send('Weather Page')
 })
 
 app.listen(3000, _ => {
