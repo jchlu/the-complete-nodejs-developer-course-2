@@ -38,6 +38,13 @@ app.get('/help', (req, res) => {
   })
 })
 
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: 'Ooops!',
+    name: 'Johnny C-L'
+  })
+})
+
 app.listen(3000, _ => {
   console.log('Server up at http://localhost:3000')
 })
