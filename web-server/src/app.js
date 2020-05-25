@@ -2,8 +2,16 @@ const path = require('path')
 const express = require('express')
 const app = express()
 
+// Paths for express config
+const staticPath = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, './views')
+
+// Configure Handlebars as engine
 app.set('view engine', 'hbs')
-app.use(express.static(path.join(__dirname, '../public')))
+app.set('views', viewsPath)
+
+// Set static serve root
+app.use(express.static(staticPath))
 
 app.get('', (req, res) => {
   res.render('index', {
