@@ -38,9 +38,18 @@ app.get('/help', (req, res) => {
   })
 })
 
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: 'Help page not found.',
+    errorMessage: 'Sorry, there\'s no Help article found here.',
+    name: 'Johnny C-L'
+  })
+})
+
 app.get('*', (req, res) => {
   res.render('404', {
-    title: 'Ooops!',
+    title: 'Ooops! Page not found.',
+    errorMessage: 'Sorry, there\'s no page here.',
     name: 'Johnny C-L'
   })
 })
