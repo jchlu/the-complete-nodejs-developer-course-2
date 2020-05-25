@@ -3,7 +3,7 @@ const { standOut, log } = require('./utils/utils')
 const { geocode } = require('./utils/geocode')
 const { weather } = require('./utils/weather')
 
-const display = (error, { longitude, latitude, location }) => {
+const display = (error, { longitude, latitude, location } = {}) => {
   if (error) {
     return log(error)
   }
@@ -12,11 +12,10 @@ const display = (error, { longitude, latitude, location }) => {
   weather(latitude, longitude, displayWeather)
 }
 
-const displayWeather = (error, data) => {
+const displayWeather = (error, { description, temperature, feelslike, location } = {}) => {
   if (error) {
     return log(error)
   }
-  const { description, temperature, feelslike, location } = data
   log(`${standOut(description)} and ${standOut(temperature)} degrees, feels like ${standOut(feelslike)} in ${standOut(location)}.`)
 }
 
