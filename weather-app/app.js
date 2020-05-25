@@ -1,7 +1,8 @@
 require('dotenv').config()
-const { standOut, log } = require('./utils/utils')
+const { DEFAULT_ADDRESS, standOut, log } = require('./utils/utils')
 const { geocode } = require('./utils/geocode')
 const { weather } = require('./utils/weather')
+
 const displayGeocode = (error, data) => {
   if (error) {
     log(error)
@@ -19,6 +20,5 @@ const displayWeather = (error, data) => {
   }
 }
 
-const placeName = 'Bristol, England'
-geocode(placeName, displayGeocode)
-weather(placeName, displayWeather)
+geocode(DEFAULT_ADDRESS, displayGeocode)
+weather(DEFAULT_ADDRESS, displayWeather)

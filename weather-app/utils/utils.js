@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const failFlash = `${chalk.redBright.inverse('FAILURE:')} `
 const standOut = text => chalk.blue(text)
-const DEFAULT_ADDRESS = 'Santo Domingo'
+const DEFAULT_ADDRESS = 'Rio San Juan, Dominican Republic'
 
 // const successFlash = `${chalk.greenBright.inverse('SUCCESS:')} `
 
