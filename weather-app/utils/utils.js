@@ -1,7 +1,6 @@
 const chalk = require('chalk')
 const failFlash = `${chalk.redBright.inverse('FAILURE:')} `
 const standOut = text => chalk.blue(text)
-const DEFAULT_ADDRESS = 'Rio San Juan, Dominican Republic'
 
 // const successFlash = `${chalk.greenBright.inverse('SUCCESS:')} `
 
@@ -16,6 +15,5 @@ const log = msg => {
 module.exports = {
   failFlash,
   log,
-  standOut,
-  DEFAULT_ADDRESS
+  standOut
 }

@@ -1,12 +1,12 @@
 require('dotenv').config()
 const request = require('postman-request')
-const { DEFAULT_ADDRESS, failFlash, standOut } = require('./utils')
+const { failFlash, standOut } = require('./utils')
 const {
   MAPBOX_PUBLIC_TOKEN,
   MAPBOX_API_ENDPOINT
 } = process.env
 
-const mapOptions = (address = DEFAULT_ADDRESS) => ({
+const mapOptions = (address) => ({
   baseUrl: MAPBOX_API_ENDPOINT,
   uri: `${encodeURIComponent(address)}.json`,
   qs: {
@@ -26,7 +26,7 @@ const geocode = (address, callback) => {
       callback(msg, undefined)
     } else {
       callback(undefined, {
-        place_name: body.features[0].place_name,
+        location: body.features[0].place_name,
         longitude: body.features[0].center[0],
         latitude: body.features[0].center[1]
       })

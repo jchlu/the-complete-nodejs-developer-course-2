@@ -1,24 +1,23 @@
 require('dotenv').config()
-const { DEFAULT_ADDRESS, standOut, log } = require('./utils/utils')
+const { standOut, log } = require('./utils/utils')
 const { geocode } = require('./utils/geocode')
 const { weather } = require('./utils/weather')
 
-const displayGeocode = (error, data) => {
+const display = (error, { longitude, latitude, location }) => {
   if (error) {
-    log(error)
-  } else {
-    log(data)
+    return log(error)
   }
+  log(`The current weather for ${location}:`)
+  // log(`The current longitude: ${longitude} & latitude: ${latitude}`)
+  weather(latitude, longitude, displayWeather)
 }
 
 const displayWeather = (error, data) => {
   if (error) {
-    log(error)
-  } else {
-    const { description, temperature, feelslike } = data
-    log(`It's currently ${standOut(description)} and ${standOut(temperature)} degrees out, but feels like ${standOut(feelslike)}.`)
+    return log(error)
   }
+  const { description, temperature, feelslike, location } = data
+  log(`${standOut(description)} and ${standOut(temperature)} degrees, feels like ${standOut(feelslike)} in ${standOut(location)}.`)
 }
 
-geocode(DEFAULT_ADDRESS, displayGeocode)
-weather(DEFAULT_ADDRESS, displayWeather)
+geocode('Whitchurch, Bristol', display)
