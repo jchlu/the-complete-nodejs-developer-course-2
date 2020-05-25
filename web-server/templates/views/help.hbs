@@ -4,10 +4,13 @@
 {{>head}}
 
 <body>
-    {{>header}}
-    {{#each msgs}}
-    <p>{{p}}</p>
-    {{/each}}
-</body>
+    <div class="main-content">
+        {{>header}}
+        {{#each msgs}}
+        <p>{{p}}</p>
+        {{/each}}
+    </div>
     {{>footer}}
+</body>
+
 </html>
