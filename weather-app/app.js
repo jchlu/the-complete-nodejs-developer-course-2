@@ -20,4 +20,5 @@ const displayWeather = (error, data) => {
   log(`${standOut(description)} and ${standOut(temperature)} degrees, feels like ${standOut(feelslike)} in ${standOut(location)}.`)
 }
 
-geocode('Whitchurch, Bristol', display)
+const searchTerm = process.argv[2] ? process.argv[2] : undefined
+geocode(searchTerm, display)

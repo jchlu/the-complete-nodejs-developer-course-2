@@ -1,6 +1,6 @@
 require('dotenv').config()
 const request = require('postman-request')
-const { failFlash, standOut } = require('./utils')
+const { log, failFlash, standOut } = require('./utils')
 const {
   MAPBOX_PUBLIC_TOKEN,
   MAPBOX_API_ENDPOINT
@@ -17,6 +17,7 @@ const mapOptions = (address) => ({
 })
 
 const geocode = (address, callback) => {
+  if (!address) { return log(failFlash + 'Please provide a search location') }
   request(mapOptions(address), (error, response, body) => {
     if (error) {
       const msg = `${failFlash}It looks like there was a problem. The message reported was: ${standOut(error.message)}`
