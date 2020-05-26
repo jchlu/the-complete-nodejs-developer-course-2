@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { standOut, log } = require('./utils/utils')
 const { geocode } = require('./utils/geocode')
 const { weather } = require('./utils/weather')

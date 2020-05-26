@@ -4,8 +4,10 @@
   "main": "src/app.js",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "hbs": "^4.1.1"
+    "hbs": "^4.1.1",
+    "postman-request": "^2.88.1-postman.22"
   },
   "nodemonConfig": {
     "ext": "*.js, *.html, *.css, *.hbs"
