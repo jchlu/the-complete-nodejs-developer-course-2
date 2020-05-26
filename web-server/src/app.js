@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const hbs = require('hbs')
 
+const port = process.env.PORT || 3000
+
 const { geocode } = require('./utils/geocode')
 const { weather } = require('./utils/weather')
 
@@ -52,7 +54,7 @@ app.get('/help/*', (req, res) => {
 app.get('/weather', (req, res) => {
   if (!req.query.address) {
     return res.status(400).json({
-      error: 'You need to provide and address'
+      error: 'You need to provide a location'
     })
   }
   geocode(req.query.address, (error, { longitude, latitude, placeName } = {}) => {
@@ -72,6 +74,6 @@ app.get('*', (req, res) => {
   })
 })
 
-app.listen(3000, _ => {
-  console.log('Server up at http://localhost:3000')
+app.listen(port, _ => {
+  console.log(`Server up at http://localhost:${port}`)
 })
